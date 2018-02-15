@@ -10,8 +10,9 @@ body {
 }
 
 .card {
-  width: 150px;
-  height: 250px;
+  margin: 30px;
+  width: 100px;
+  height: 160px;
   background-color: #dbd7f2;
   border: 2px solid rgb(58, 55, 55);
   box-shadow: 3px 9px 51px 0px rgba(26,25,26,0.55);
