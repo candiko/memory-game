@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: #f2f2f2;
+}
+
+.card {
+  width: 150px;
+  height: 250px;
+  background-color: #dbd7f2;
+  border: 2px solid rgb(58, 55, 55);
+  box-shadow: 3px 9px 51px 0px rgba(26,25,26,0.55);
+  border-radius: 5%;
+}
