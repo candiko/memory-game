@@ -1,19 +1,35 @@
 import React, {Component} from 'react';
 import Card from './Card';
+import './CardList.css';
+
+const CardState = {
+  hiding: 0,
+  showing: 1,
+  matching: 2,
+}
+
+// {id: 0, cardState: CardState.hiding, bacgroundColor: ''}
 
 class CardList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      colors: [],
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
 
-  //Start game handler
-  handleClick() {
-    const newColors = this.colorForCards(16);
-    this.setState({ colors: newColors });
+    // Make an empty array for 16 card objetcs
+    let cards = Array(16);
+    // Choose colors for 16 cards
+    const colors = this.colorForCards(16);
+    // Create & add index, cardState and backgroundColor props to each card obj in cards arr
+    for (let cardId = 0; cardId < cards.length; cardId++) {
+      cards[cardId] = {
+        id: cardId,
+        cardState: CardState.hiding,
+        backgroundColor: colors[cardId]
+      };
+    }
+
+    this.state = {
+      cards: cards,
+    }
   }
 
   // Creating random colors in hexadecimal format
@@ -59,14 +75,15 @@ class CardList extends Component {
   }
 
   render() {
-    const cards = Array(16).fill(null);
+    const cards = this.state.cards.map((card) => (
+      <Card
+        key={card.id}
+        showing={true}
+        backgroundColor={card.backgroundColor}
+        onClick={() => console.log('Clicked.')} />
+    ));
     return (
-      cards.map((card, i) => (
-        <div key={i}>
-          <Card colors={this.state.colors[i]} />
-          <button onClick={this.handleClick}>Start Game</button>
-        </div>
-      ))
+        <div className="container">{cards}</div>
     );
   }
 }
