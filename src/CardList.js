@@ -15,7 +15,7 @@ class CardList extends Component {
     super(props);
 
     // Number of cards in the game
-    const numOfCards = 32;
+    const numOfCards = 16;
     // Make an empty array for card objetcs as many as number of cards
     let cards = Array(numOfCards);
     // Choose colors for cards
@@ -33,6 +33,23 @@ class CardList extends Component {
     this.state = {
       cards: cards,
     }
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  // Handle click event
+  handleClick(cardId) {
+    let cards = this.state.cards.splice(0);
+    // If card is closed, open it
+    if (cards[cardId].cardState === 0) {
+      cards[cardId].cardState = CardState.showing;
+      this.setState({ cards });
+    }
+    // If card is open, close it
+    else if (cards[cardId].cardState === 1) {
+      cards[cardId].cardState = CardState.hiding;
+      this.setState({ cards });
+    }    
   }
 
   // Creating random colors in hexadecimal format
@@ -78,12 +95,14 @@ class CardList extends Component {
   }
 
   render() {
+    // Map card arr for to render each Card component
     const cards = this.state.cards.map((card) => (
       <Card
         key={card.id}
-        showing={true}
+        cardId={card.id}
+        showing={card.cardState === 0 ? false : true}
         backgroundColor={card.backgroundColor}
-        onClick={() => console.log('Clicked.')} />
+        onClick={this.handleClick} />
     ));
     return (
         <div className="container">{cards}</div>

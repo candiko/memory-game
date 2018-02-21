@@ -9,17 +9,20 @@ const Card = (props) => {
     onClick: PropTypes.func.isRequired,
   }
 
+  // Deconstructing this.props obj
+  const {cardId, showing, backgroundColor, onClick} = props;
+
   // Style object for conditionally adding style to component
   let style = {};
-  if (props.showing) {
-    style.backgroundColor = props.backgroundColor;
+  if (showing) {
+    style.backgroundColor = backgroundColor;
   }
 
   return (
     <div
       className="card"
       style={style}
-      onClick={props.onClick} >
+      onClick={() => onClick(cardId)} >
     </div>
   );
 }
