@@ -14,11 +14,14 @@ class CardList extends Component {
   constructor(props) {
     super(props);
 
-    // Make an empty array for 16 card objetcs
-    let cards = Array(16);
-    // Choose colors for 16 cards
-    const colors = this.colorForCards(16);
-    // Create & add index, cardState and backgroundColor props to each card obj in cards arr
+    // Number of cards in the game
+    const numOfCards = 32;
+    // Make an empty array for card objetcs as many as number of cards
+    let cards = Array(numOfCards);
+    // Choose colors for cards
+    const colors = this.colorForCards(numOfCards);
+    // Create & add index, cardState and backgroundColor object properties
+    // to each card obj in cards arr
     for (let cardId = 0; cardId < cards.length; cardId++) {
       cards[cardId] = {
         id: cardId,
